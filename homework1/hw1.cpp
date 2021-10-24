@@ -5,58 +5,8 @@
 #include <string>
 
 using namespace std;
-double func(double xn, double yn, double x) {
-    return yn / xn * x;
-}
-vector<double> whichSide(double xn, double yn, vector<double>& x, vector<double>& y, string coordType, string side) {
-    vector<double> xright;
-    vector<double> xleft;
-    vector<double> yright;
-    vector<double> yleft;
-    vector<double> xzeros;
-    vector<double> yzeros;
-    for (int i = 0; i < x.size(); i++) {
-        if (func(xn, yn, x[i]) - y[i] > 0) {
-            xright.push_back(x[i]);
-            yright.push_back(y[i]);
-        }
-        else if (func(xn, yn, x[i]) - y[i] < 0) {
-            xleft.push_back(x[i]);
-            yleft.push_back(y[i]);
-        }
-        else {
-            xzeros.push_back(x[i]);
-            yzeros.push_back(y[i]);
-        }
-    }
-    if (coordType == "X") {
-        if (side == "Right") {
-            return xright;
-        }
-        else if (side == "Left") {
-            return xleft;
-        }
-        else {
-            return xzeros;
-        }
-    }
-    else {
-        if (side == "Right") {
-            return yright;
-        }
-        else if (side == "Left") {
-            return yleft;
-        }
-        else {
-            return yzeros;
-        }
-    }
-}
-void printArray(vector<double> & arr) {
-    for (const double & i : arr) {
-        cout << i << endl;
-    }
-}
+
+
 vector<string> readFile() {
     string line;
     vector<string> points;
