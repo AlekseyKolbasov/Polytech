@@ -60,7 +60,7 @@ void printArray(vector<double> & arr) {
 vector<string> readFile() {
     string line;
     vector<string> points;
-    ifstream file("F://C++//homework1//file.txt");
+    ifstream file("file.txt");
     if (file.is_open()) {
         string str;
         while (!file.eof()) {
