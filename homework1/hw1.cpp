@@ -10,7 +10,7 @@ using namespace std;
 vector<string> readFile() {
     string line;
     vector<string> points;
-    ifstream file("file.txt");
+    ifstream file("in.txt");
     if (file.is_open()) {
         string str;
         while (!file.eof()) {
