@@ -100,14 +100,14 @@ int main() {
         {
             if (X[i] * Y[0] /X[0] < Y[i]) {
                 float m1 = scalar(X[0],X[0], X[i], X[i]) / modyl(X[0], Y[0], X[i], Y[i]);
-                if (m1 < mleftmin)
+                if (m1 <= mleftmin)
                 {
                     mleftmin = m1;
                     nleft = i;
                 }
             } else {
                 float m1 = scalar(X[0], Y[0], X[i], Y[i]) / modyl(X[0], Y[0], X[i], Y[i]);
-                if (m1 < mrightmin) {
+                if (m1 <= mrightmin) {
                     mrightmin = m1;
                     nright = i;
                 }
