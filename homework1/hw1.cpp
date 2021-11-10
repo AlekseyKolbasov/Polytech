@@ -10,7 +10,7 @@ int main()
 
 	int x, y;
 	
-	int xleft,yleft,xright,yright;
+	int xleft=0,yleft=0,xright=0,yright=0;
 	
 	double cosright, cosleft;
 	cosleft = 1; cosright = 1;
