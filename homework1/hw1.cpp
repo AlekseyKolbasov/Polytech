@@ -115,8 +115,8 @@ int main() {
         }
     }
 
-    cout<<"Leftangle: "<<X[nleft]<<" "<<Y[nleft]<<endl;
-    cout<<"Rightangle:  "<<X[nright]<<" "<<Y[nright]<<endl;
+    cout<<"Leftmost: "<<X[nleft]<<" "<<Y[nleft]<<endl;
+    cout<<"Rightmost: "<<X[nright]<<" "<<Y[nright]<<endl;
 
 
 }
