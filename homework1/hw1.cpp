@@ -18,18 +18,14 @@ int main()
 	int x0, y0;
 	infile >> x0 >> y0;
 
-
 	while (infile >> x >> y)
 	{
-		
-		
 		double cos = (x0*x+y0*y)/(sqrt(x*x+y*y)*sqrt(x0*x0+y0*y0));
         	cos =round(cos * 1000.0) / 1000.0;
 		if (cos <=cosleft && (y0*x < x0*y)) 
 		{
 			cosleft = cos;
 			xleft = x; yleft = y;
-
 		}
 		if (cos <=cosright && (y0*x >= x0*y)) 
 		{
