@@ -24,7 +24,7 @@ int main()
 		
 		
 		double cos = (x0*x+y0*y)/(sqrt(x*x+y*y)*sqrt(x0*x0+y0*y0));
-        	cos =round(cos * 100.0) / 100.0;
+        	cos =round(cos * 1000.0) / 1000.0;
 		if (cos <=cosleft && (y0*x < x0*y)) 
 		{
 			cosleft = cos;
