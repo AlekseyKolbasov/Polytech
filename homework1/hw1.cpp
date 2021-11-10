@@ -2,10 +2,11 @@
 #include <iostream>
 #include <fstream>
 #include <cmath>
+using namespace std;
 
 int main()
 {
-	std::ifstream infile("in.txt");
+	ifstream infile("in.txt");
 
 	int x, y;
 	
@@ -22,7 +23,7 @@ int main()
 		
 		
 		double cos = (x0*x+y0*y)/(sqrt(x*x+y*y)*sqrt(x0*x0+y0*y0));
-		cos = std::round(cos * 10000000000.0) / 10000000000.0;
+		cos = round(cos * 10000000000.0) / 10000000000.0;
         
 		if (cos <= _lcos && (y0*x < x0*y)) 
 		{
@@ -37,6 +38,6 @@ int main()
 		}
 	}
 
-	std::cout << "Leftmost: " << lx << " " << ly << "\n";
-	std::cout << "Rightmost: " << rx << " " << ry << "\n";
+	cout << "Leftmost: " << lx << " " << ly << "\n";
+	cout << "Rightmost: " << rx << " " << ry << "\n";
 }
