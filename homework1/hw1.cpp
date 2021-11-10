@@ -1,122 +1,42 @@
+#include <stdlib.h>
 #include <iostream>
-#include <cmath>
 #include <fstream>
-#include <vector>
-#include <string>
+#include <cmath>
 
-using namespace std;
-
-
-vector<string> readFile() {
-    string line;
-    vector<string> points;
-    ifstream file("in.txt");
-    if (file.is_open()) {
-        string str;
-        while (!file.eof()) {
-            file >> str;
-            points.push_back(str);
-        }
-        points.pop_back();
-    }
-    file.close();
-    return points;
-}
-vector<double> divider(vector<string>& arr, string type) {
-    int n = arr.size();
-    vector<double> Xcell;
-    vector<double> Ycell;
-    for (int i = 0; i < n; i++) {
-        if (i % 2 == 0) {
-            Xcell.push_back(stoi(arr[i]));
-        }
-        else {
-            Ycell.push_back(stoi(arr[i]));
-        }
-    }
-    return (type == "X") ? Xcell : Ycell;
-}
-
-float scalar(float x1,float y1, float x2, float y2)
+int main()
 {
-    return x1*x2+y1*y2;
-}
+	std::ifstream infile("in.txt");
 
-double modyl(double x1,double y1,double x2, double y2)
-{
-    return sqrt(x1*x1+y1*y1) * sqrt(x2*x2+y2*y2);
-}
+	int x, y;
+	
+	int lx = 0, rx = 0, ly = 0, ry = 0;
+	double _rcos, _lcos;
+	_lcos = 1; _rcos = 1;
 
-int main() {
-    vector<string> points = readFile();
-    vector<double> vectorX = divider(points, "X");
-    vector<double> vectorY = divider(points, "Y");
+	int x0, y0;
+	infile >> x0 >> y0;
+	
+	
+	while (infile >> x >> y)
+	{
+		
+		
+		double cos = (x0*x+y0*y)/(sqrt(x*x+y*y)*sqrt(x0*x0+y0*y0));
+		cos = std::round(cos * 10000000000.0) / 10000000000.0;
+        
+		if (cos <= _lcos && (y0*x < x0*y)) 
+		{
+			_lcos = cos;
+			lx = x; ly = y;
 
-    float mleftmin = 1;
-    float mrightmin = 1;
-    int nleft, nright;
+		}
+		if (cos <= _rcos && (y0*x >= x0*y)) 
+		{
+			_rcos = cos;
+			rx = x; ry = y;
+		}
+	}
 
-    int a = vectorX.size();
-    double X[a];
-    double Y[a];
-
-    for (int i=0; i<a; i++)
-    {
-        double *c = &vectorX[i];
-        double h = *c;
-        X[i] = h;
-        double *c1 = &vectorY[i];
-        double h1 = *c1;
-        Y[i] = h1;
-        //cout<<X[i]<<"   "<<Y[i]<<endl;
-    }
-
-
-    //Для углов
-    for (int i = 1; i < sizeof(X)/8; ++i)
-    {
-        if (X[0]==0)
-        {
-            if (X[i]<0)
-            {
-                double m1 = scalar(X[0], Y[0], X[i], Y[i]) / modyl(X[0], Y[0], X[i], Y[i]);
-                if (m1 > Y[i])
-                {
-                    m1 = X[i];
-                    nleft = i;
-                }
-            }
-            else
-            {
-                float m1 = scalar(X[0], Y[0], X[i], X[i]) / modyl(X[0], Y[0], X[i], Y[i]);
-                if (m1 > X[i])
-                {
-                    m1 = X[i];
-                    nright = i;
-                }
-            }
-        }
-        else
-        {
-            if (X[i] * Y[0] /X[0] < Y[i]) {
-                float m1 = scalar(X[0],X[0], X[i], X[i]) / modyl(X[0], Y[0], X[i], Y[i]);
-                if (m1 <= mleftmin)
-                {
-                    mleftmin = m1;
-                    nleft = i;
-                }
-            } else {
-                float m1 = scalar(X[0], Y[0], X[i], Y[i]) / modyl(X[0], Y[0], X[i], Y[i]);
-                if (m1 <= mrightmin) {
-                    mrightmin = m1;
-                    nright = i;
-                }
-            }
-        }
-    }
-
-    cout<<"Leftmost: "<<X[nleft]<<" "<<Y[nleft]<<"\n";
-    cout<<"Rightmost: "<<X[nright]<<" "<<Y[nright]<<"\n";
-
-
+	std::cout << "Leftmost: " << lx << " " << ly << "\n";
+	std::cout << "Rightmost: " << rx << " " << ry << "\n";
 }
