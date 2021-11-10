@@ -115,8 +115,8 @@ int main() {
         }
     }
 
-    cout<<"Leftmost: "<<X[nleft]<<" "<<Y[nleft]<<endl;
-    cout<<"Rightmost: "<<X[nright]<<" "<<Y[nright]<<endl;
+    cout<<"Leftmost: "<<X[nleft]<<" "<<Y[nleft]<<"\n";
+    cout<<"Rightmost: "<<X[nright]<<" "<<Y[nright]<<"\n";
 
 
 }
