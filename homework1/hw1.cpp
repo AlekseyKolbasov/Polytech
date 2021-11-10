@@ -38,6 +38,6 @@ int main()
 		}
 	}
 
-	cout << "Leftmost: " << xleft << " " << yleft << "\n";
-	cout << "Rightmost: " << xright << " " << yright << "\n";
+	cout << "Leftmost: " << xleft << " " << yleft << endl;
+	cout << "Rightmost: " << xright << " " << yright << endl;
 }
