@@ -59,10 +59,6 @@ int main(int argc, char** argv) {
             a++;
         }
     }
-    return 4;
-    if (V_x==0){
-        return 0;
-    }
         float g = 9.81; float xi = 0;
 
         int  zona = 1;
