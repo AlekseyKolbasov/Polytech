@@ -14,7 +14,7 @@ double traectoriaL(double g, double x, double xi, double yi, double V_x, double 
 }
 int proverkaRight(vector<double> X,vector<double> Y,double g, double yi, double V_x, double V_y,int zona, int a){
     int n;
-    for (int i = zona; i<=a-1; ++i){
+    for (int i = zona; i<=a; ++i){
         double l = - g*(X[i] - X[zona-1])*(X[i]-X[zona-1])/2/V_x/V_x+(V_y-g*X[zona-1]/V_x)*(X[i]-X[zona-1])/V_x+yi;
         //out<<l<<endl;
         if (l<Y[i]){
