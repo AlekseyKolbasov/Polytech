@@ -16,7 +16,7 @@ int proverkaRight(vector<double> X,vector<double> Y,double g, double yi, double 
     int n;
     for (int i = zona; i<=a; ++i){
         double l = - g*(X[i] - X[zona-1])*(X[i]-X[zona-1])/2/V_x/V_x+(V_y-g*X[zona-1]/V_x)*(X[i]-X[zona-1])/V_x+yi;
-        cout<<l<<endl;
+        //cout<<l<<endl;
         if (l<Y[i]){
             int j = i;
             return j;
@@ -77,7 +77,7 @@ int main(int argc, char** argv) {
                 return 0;
             }
             zona1 = proverkaRight(X, Y,g , yi, V_x, V_y,zona, a);
-            cout<<zona1<<"R"<<endl;
+            //cout<<zona1<<"R"<<endl;
             if (zona1==a+1){
                 cout<<zona1-1<<endl;
                 return 0;
@@ -95,7 +95,7 @@ int main(int argc, char** argv) {
                 return 0;
             }
             double yr = traectoriaL(g,X[zona-1],X[zona1],yi,V_x, V_y);
-            cout<<zona<<"L"<<endl;
+            //cout<<zona<<"L"<<endl;
             yi=yr;
             if (yi<0){
                 cout<<zona-1<<endl;
