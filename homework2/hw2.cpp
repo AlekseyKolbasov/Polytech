@@ -50,9 +50,9 @@ int proverkaRight(double X[],double Y[],float g, float xi, float yi, float V_x, 
     int n;
     for (int i = zona; i<=a-2; ++i){
         float l = - g*(X[i]-X[zona-1])*(X[i]-X[zona-1])/2/V_x/V_x+(V_y-g*X[zona-1]/V_x)*(X[i]-X[zona-1])/V_x+yi;
-        if (l<0) {
-            return 0
-        }
+        //if (l<0) {
+        //   return 0
+        //}
         //cout<<X[i]<<"  "<<l<<"  provekraR"<<endl;
         if (l<Y[i]){
            int j = i;
