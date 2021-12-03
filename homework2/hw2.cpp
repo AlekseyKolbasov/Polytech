@@ -52,7 +52,7 @@ int main(int argc, char** argv) {
 
     ifstream file(argv[1]);
     double  h,V_x,V_y,x,y;
-    int a=1;
+    int a;
     vector<double>  X,Y;
     if (file.is_open()) {
         file>>h;
