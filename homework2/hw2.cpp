@@ -59,6 +59,7 @@ int main(int argc, char** argv) {
             a++;
         }
     }
+    return 4;
     if (V_x==0){
         return 0;
     }
