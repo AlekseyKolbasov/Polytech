@@ -43,7 +43,7 @@ int proverkaleft(vector<double> X,vector<double> Y,double g, double yi, double V
 
 int main(int argc, char** argv) {
 
-    ifstream file("file.txt");
+    ifstream file(argv[1]);
     double  h,V_x,V_y,x,y;
     int a=1;
     vector<double>  X,Y;
