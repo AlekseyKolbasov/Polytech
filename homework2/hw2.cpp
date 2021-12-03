@@ -57,10 +57,11 @@ int main(int argc, char** argv) {
             X.push_back(x);
             Y.push_back(y);
             a++;
-            //cout<<a<<endl;
         }
     }
-    //cout<<sizeof(X)/8-1<<endl;
+    if (V_x==0){
+        return 0;
+    }
         float g = 9.81; float xi = 0;
 
         int  zona = 1;
