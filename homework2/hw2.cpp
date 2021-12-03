@@ -59,6 +59,10 @@ int main(int argc, char** argv) {
             a++;
         }
     }
+    if (V_x==0){
+     cout<<0<<endl;
+     return 0;
+    }
         float g = 9.81; float xi = 0;
 
         int  zona = 1;
