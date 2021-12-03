@@ -17,9 +17,6 @@ int proverkaRight(vector<double> X,vector<double> Y,double g, double yi, double 
     for (int i = zona; i<=a-1; ++i){
         double l = - g*(X[i] - X[zona-1])*(X[i]-X[zona-1])/2/V_x/V_x+(V_y-g*X[zona-1]/V_x)*(X[i]-X[zona-1])/V_x+yi;
         //cout<<l<<endl;
-        if (l<0) {
-            return 0;
-        }
         if (l<Y[i]){
             int j = i;
             return j;
@@ -33,9 +30,7 @@ int proverkaleft(vector<double> X,vector<double> Y,double g, double yi, double V
     for (int i = 1; i<=zona; ++i){
         double l = - g*(X[zona-i]-X[zona])*(X[zona-i]-X[zona])/2/V_x/V_x-(V_y-g*X[zona]/V_x)*(X[zona-i]-X[zona])/V_x+yi;
         //cout<<l<<endl;
-        if (zona-i==0){
-            return 0;
-        }
+   
         if (l<Y[zona-i]){
             int j = zona-i+1;
             return j;
