@@ -18,7 +18,8 @@ int proverkaRight(vector<double> X,vector<double> Y,double g, double yi, double 
         double l = - g*(X[i] - X[zona-1])*(X[i]-X[zona-1])/2/V_x/V_x+(V_y-g*X[zona-1]/V_x)*(X[i]-X[zona-1])/V_x+yi;
         //cout<<l<<endl;
         if (l<0) {
-            return 0;
+            int j = zona;
+            return j;
         }
         if (l<Y[i]){
             int j = i;
