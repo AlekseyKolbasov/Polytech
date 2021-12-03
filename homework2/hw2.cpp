@@ -71,7 +71,7 @@ int main(int argc, char** argv) {
         double yi;
         yi = Y[0];
 
-        while (yi>0){
+        while (yi>=0){
             if (zona1==zona){
                 cout<<zona-1<<endl;
                 return 0;
