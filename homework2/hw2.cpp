@@ -75,7 +75,7 @@ int main(int argc, char** argv) {
 
         while (yi >= 0) {
             if (zona1 == zona) {
-                cout << zona1 - 1  << endl;
+                cout << zona1 << endl;
                 return 0;
             }
             //cout<<zona1<<"R"<<endl;
