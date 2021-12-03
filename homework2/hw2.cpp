@@ -49,7 +49,7 @@ int main(int argc, char** argv) {
     int  zona = 1;
     int zona1;
 
-    ifstream file("file.txt");
+    ifstream file(argv[1]);
     double  h,V_x,V_y,x,y;
     int a=1;
     vector<double>  X,Y;
