@@ -142,9 +142,6 @@ int main(int argc, char** argv) {
                 cout<<zona1-1<<endl;
                 return 0;
             }
-            if (zona1 ==0){
-                return 0;
-            }
             double yl = traectoriaR(g,X[zona1],X[zona-1],yi,V_x, V_y);
            // cout<<yl<<"   "<<zona1<<endl;
             yi = yl;
