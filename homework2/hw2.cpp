@@ -16,7 +16,7 @@ int proverkaRight(vector<double> X,vector<double> Y,double g, double yi, double 
     int n;
     for (int i = zona; i<=a; ++i){
         double l = - g*(X[i] - X[zona-1])*(X[i]-X[zona-1])/2/V_x/V_x+(V_y-g*X[zona-1]/V_x)*(X[i]-X[zona-1])/V_x+yi;
-        //cout<<l<<endl;
+       // cout<<l<<endl;
         if (l<Y[i]){
             int j = i;
             return j;
@@ -46,7 +46,7 @@ int proverkaleft(vector<double> X,vector<double> Y,double g, double yi, double V
 
 int main(int argc, char** argv) {
     int  zona = 1;
-    int zona1;
+    int zona1 = 0;
 
     ifstream file(argv[1]);
     double  h,V_x,V_y,x,y;
@@ -57,6 +57,7 @@ int main(int argc, char** argv) {
         file>>V_x>>V_y;
         X.push_back(0.);
         Y.push_back(h);
+        //cout<<Y[0]<<"saa"<<endl;
         //cout<<X[a]<<"  "<<Y[a]<<endl;
         while (file >> x >> y) {
             X.push_back(x);
@@ -65,7 +66,7 @@ int main(int argc, char** argv) {
             //cout<<X[a]<<"  "<<Y[a]<<endl;
         }
     }
-
+    //cout<<zona1<<"R"<<endl;
         float g = 9.81; float xi = 0;
 
         double yi;
@@ -76,6 +77,7 @@ int main(int argc, char** argv) {
                 cout<<zona-1<<endl;
                 return 0;
             }
+            //cout<<zona1<<"R"<<endl;
             zona1 = proverkaRight(X, Y,g , yi, V_x, V_y,zona, a);
             //cout<<zona1<<"R"<<endl;
             if (zona1==a+1){
