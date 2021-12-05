@@ -56,11 +56,15 @@ int main(int argc, char** argv) {
             file >> h;
             file >> V_x;
             file >> V_y;
-            X.push_back(0.);
+            X.push_back(0);
             Y.push_back(h);
-            double t_end = (V_y+sqrt(V_y*V_y+2*g*h))/g;
-            while ((!file.eof()) && (check <= V_x*t_end)) {
+            double t_end = (V_y + sqrt(V_y * V_y + 2 * g * h)) / g;
+
+            while ((!file.eof()) && (check <=V_x * t_end)) {
                 if (file >> check >> tmp) {
+
+                    X.push_back(check);
+                    Y.push_back(tmp);
                     a++;
                 }
             }
@@ -70,7 +74,7 @@ int main(int argc, char** argv) {
             cout << zona1 << endl;
             return 0;
         }
-        
+
         double yi;
         yi = Y[0];
 
