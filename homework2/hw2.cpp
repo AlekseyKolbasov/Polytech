@@ -44,7 +44,7 @@ int proverkaleft(vector<double> X,vector<double> Y,double g, double yi, double V
 
 int main(int argc, char** argv) {
     if (argc==2) {
-        cout<<1<<endl;
+        cout<<0<<endl;
     }
     
 }
