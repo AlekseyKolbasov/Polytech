@@ -94,7 +94,7 @@ int main(int argc, char** argv) {
             yi = traectoriaR(g, X[zona1+1], X[zona - 1], yi, V_x, V_y);
 
             if (yi < 0) {
-                cout << zona1 << endl;
+                cout << int(zona1) << endl;
                 return 0;
             }
 
