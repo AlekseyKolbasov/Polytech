@@ -69,6 +69,11 @@ int main(int argc, char** argv) {
                 }
             }
         }
+        
+        if(a==0) {
+            cout<<0<<endl;
+            return 0;
+        }
 
         if (V_x == 0) {
             cout << zona1 << endl;
