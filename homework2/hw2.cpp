@@ -124,7 +124,7 @@ int main(int argc,char** argv) {
         }
 
         if (way == 1) {
-            std::cout << X_per.size(); //ans
+            std::cout << int(X_per.size()); //ans
             return 0;
         }
 
@@ -155,7 +155,7 @@ int main(int argc,char** argv) {
                 }
 
                 if (way == 0) {
-                    std::cout << 0; //ans
+                    std::cout << int(0); //ans
                     return 0;
                 }
             }
@@ -182,7 +182,7 @@ int main(int argc,char** argv) {
                 }
 
                 if (way == 1) {
-                    std::cout << X_per.size(); //ans
+                    std::cout << int(X_per.size()); //ans
                     return 0;
                 }
             }
