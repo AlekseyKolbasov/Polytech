@@ -1,120 +1,177 @@
 #include <iostream>
-#include <fstream>
 #include <vector>
-#include <string>
 #include <cmath>
-using namespace std;
+#include <string>
+#include <fstream>
 
-double traectoriaR(double g, double x, double xi, double yi, double V_x, double V_y){
-    double Y = - g*(x-xi)*(x-xi)/2/V_x/V_x+(V_y-g*xi/V_x)*(x-xi)/V_x+yi;
+std::vector<double> ReadFile(std::string File){
+
+    std::vector<double> coords;
+    std::vector<std::string> points;
+
+    std::ifstream fin;
+    fin.open(File);
+
+    if (fin.is_open()){
+        std::string str;
+
+        while (!fin.eof()) {
+            str = "";
+            fin >> str;
+            points.push_back(str);
+        }
+    }
+
+    fin.close();
+
+    for (int i; i< points.size(); i++){
+
+        std::string b = points[i];
+        double a = strtod(b.c_str(), nullptr);
+        coords.push_back(a);
+    }
+
+    return coords;
+}
+
+std::vector<double> XorY(std::vector<double> coords,int name_of_axis){
+
+    std::vector<double> axis;
+
+    for (int i; i< coords.size()/2; i++){
+
+        if(name_of_axis == 1){              // 1 is equal x
+            axis.push_back(coords[2*i]);
+        }
+        else{                               // 2,3... is equal y
+            axis.push_back(coords[2*i+1]);
+        }
+    }
+    return axis;
+}
+
+double recurs(std::vector<double> X, double n){
+    if (n == 0) {
+        return 0;
+    }
+    else {
+        return 2 * X[n-1] - recurs(X, n - 1);
+    }
+}
+
+//Функция, возвращающая координату Y параболы в различных точках X
+std::vector<double> coords(std::vector<double> X,double vx, double vy, double h,double g,int n, std::vector<double> recX){
+    std::vector<double> Y;
+
+    for(int i = 0; i < X.size(); i++){
+        double a = h + (X[i]-recurs(recX,n))*vy/vx - pow((X[i]-recurs(recX,n)),2)*g/(2*pow(vx,2));
+        Y.push_back(a);
+    }
     return Y;
 }
-double traectoriaL(double g, double x, double xi, double yi, double V_x, double V_y){
-    double Y = - g*(x-xi)*(x-xi)/2/V_x/V_x-(V_y-g*xi/V_x)*(x-xi)/V_x+yi;
-    return Y;
-}
-int proverkaRight(vector<double> X,vector<double> Y,double g, double yi, double V_x, double V_y,int zona, int a){
-    int n;
-    for (int i = zona; i<=a; ++i){
-        double l = - g*(X[i] - X[zona-1])*(X[i]-X[zona-1])/2/V_x/V_x+(V_y-g*X[zona-1]/V_x)*(X[i]-X[zona-1])/V_x+yi;
-        if (l<Y[i]){
-            int j = i-1;
-            return j;
+
+
+
+int main () {
+
+    if (2 == 2) {
+        std::vector<double> ALL = ReadFile("test1_1.txt");
+        //std::cout<<ALL.size()<<std::endl;
+
+        double h = ALL[0];
+        double vx = ALL[1];
+        double vy = ALL[2];
+        double g = 9.81;
+
+        ALL.erase(ALL.begin() + 0);
+        ALL.erase(ALL.begin() + 0);
+        ALL.erase(ALL.begin() + 0);
+
+        double way = 1;//начальное направление движения
+
+        int n = 0;//счетчик для рекурсии
+        int n_p = 0;// Номер перегородки от которой мы отразились
+
+        std::vector<double> Y_true;// Y координата мячика
+        std::vector<double> Y_per;//Y координата перегородки
+        std::vector<double> X_per;//X координата перегородки
+        std::vector<double> X_rec;//X координата перегородок, от которых мячик отразися
+
+
+        X_per = XorY(ALL, 1);
+        Y_per = XorY(ALL, 2);
+
+        //std::cout<<X_per.size()<<std::endl;
+
+        for (int i = 0; i < X_per.size(); i++) {
+            Y_true.push_back(coords(X_per, vx, vy, h, g, n, X_rec)[i]);
         }
-        n = i;
-    }
-    return n;
-}
-int proverkaleft(vector<double> X,vector<double> Y,double g, double yi, double V_x, double V_y,int zona){
-    int n;
-    for (int i = 0; i<=zona; ++i){
-        double l = - g*(X[zona-i]-X[zona+1])*(X[zona-i]-X[zona+1])/2/V_x/V_x-(V_y-g*X[zona+1]/V_x)*(X[zona-i]-X[zona+1])/V_x+yi;
 
-        if (l<Y[zona-i]){
-            int j = zona-i;
-            return j;
-        }
-        else if (zona-i==0){
-            return zona-i;
-        }
-        n = zona-i;
-    }
-    return n;
-}
-
-int main(int argc, char** argv) {
-    if (argc==2) {
-        int zona = 1;
-        int zona1 = 0;
-
-        ifstream file(argv[1]);
-        double h, V_x = 0, V_y, x, y;
-        int a = 0;
-        vector<double> X, Y;
-        double g = 9.81, check, tmp;
-        if (file.is_open()) {
-            file >> h;
-            file >> V_x;
-            file >> V_y;
-            X.push_back(0);
-            Y.push_back(h);
-            double t_end = (V_y + sqrt(V_y * V_y + 2 * g * h)) / g;
-
-            while ((!file.eof()) && (check <=V_x * t_end)) {
-                if (file >> check >> tmp) {
-
-                    X.push_back(check);
-                    Y.push_back(tmp);
-                    a++;
-                }
+        //Первое столкновение
+        for (int i = 0; i < X_per.size(); i++) {
+            if (Y_true[i] < Y_per[i]) {
+                n_p = i;
+                way = 0;
+                n++;
+                X_rec.push_back(X_per[i]);
+                vx = -vx;
+                break;
             }
         }
-       
-       if (a==0) {
-           cout<<0<<endl;
-          return 0;
-       }
 
-        if (V_x == 0) {
-            cout << zona1 << endl;
+        if (way == 1) {
+            std::cout << int(X_per.size()); //ans
             return 0;
         }
+        while (true) {
+            if (way == 0) {
+                Y_true = coords(X_per, vx, vy, h, g, n, X_rec);
+                for (int i = n_p - 1; i >= 0; i--) {
 
-        double yi;
-        yi = Y[0];
+                    if (Y_true[i] <= Y_per[i]) {
 
-        while (yi >= 0) {
-            if (zona1 == zona) {
-                cout << zona1 << endl;
-                return 0;
+                        n_p = i;
+                        way = 1;
+                        n++;
+                        X_rec.push_back(X_per[i]);
+                        vx = -vx;
+                        break;
+                    }
+                }
+
+                if (Y_true[n_p] < 0) {
+                    std::cout << n_p +1; //ans
+                    return 0;
+                }
+
+                if (way == 0) {
+                    std::cout << 0; //ans
+                    return 0;
+                }
             }
+            if (way == 1) {
+                Y_true = coords(X_per, vx, vy, h, g, n, X_rec);
+                for (int i = n_p + 1; i < X_per.size(); i++) {
 
-            zona1 = proverkaRight(X, Y, g, yi, V_x, V_y, zona, a);
+                    if (Y_true[i] <= Y_per[i]) {
+                        n_p = i;
+                        way = 0;
+                        n++;
+                        X_rec.push_back(X_per[i]);
+                        vx = -vx;
+                        break;
+                    }
+                }
 
-            if (zona1 == a ) {
-                cout << zona1  << endl;
-                return 0;
-            }
+                if (Y_true[n_p] < 0) {
+                    std::cout << n_p; //ans
+                    return 0;
+                }
 
-            yi = traectoriaR(g, X[zona1+1], X[zona - 1], yi, V_x, V_y);
-
-            if (yi < 0) {
-                cout << int(zona1) << endl;
-                return 0;
-            }
-
-            zona = proverkaleft(X, Y, g, yi, V_x, V_y, zona1);
-
-            if (zona == 0) {
-                cout << zona << endl;
-                return 0;
-            }
-
-            yi = traectoriaL(g, X[zona], X[zona1+1], yi, V_x, V_y);
-
-            if (yi<0){
-                cout<<zona<<endl;
-                return 0;
+                if (way == 1) {
+                    std::cout << int(X_per.size()); //ans
+                    return 0;
+                }
             }
         }
     }
