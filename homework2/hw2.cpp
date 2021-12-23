@@ -140,7 +140,7 @@ int main () {
                 }
 
                 if (Y_true[n_p] < 0) {
-                    int popka = n_p + 1:
+                    int popka = n_p + 1;
                     std::cout << popka<<std::endl; //ans
                     return 0;
                 }
