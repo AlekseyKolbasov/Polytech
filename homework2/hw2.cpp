@@ -120,7 +120,7 @@ int main () {
         }
 
         if (way == 1) {
-            std::cout << int(X_per.size()); //ans
+            std::cout << X_per.size()<<std::endl;//ans
             return 0;
         }
         while (true) {
@@ -140,12 +140,13 @@ int main () {
                 }
 
                 if (Y_true[n_p] < 0) {
-                    std::cout << n_p +1; //ans
+                    int popka = n_p + 1:
+                    std::cout << popka<<std::endl; //ans
                     return 0;
                 }
 
                 if (way == 0) {
-                    std::cout << 0; //ans
+                    std::cout <<0<<std::endl; //ans
                     return 0;
                 }
             }
@@ -164,12 +165,12 @@ int main () {
                 }
 
                 if (Y_true[n_p] < 0) {
-                    std::cout << n_p; //ans
+                    std::cout <<n_p<<std::endl; //ans
                     return 0;
                 }
 
                 if (way == 1) {
-                    std::cout << int(X_per.size()); //ans
+                    std::cout << X_per.size()<<std::endl; //ans
                     return 0;
                 }
             }
