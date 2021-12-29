@@ -60,7 +60,7 @@ int main(int argc, char** argv) {
             Y.push_back(h);         
             double t_end = (V_y+sqrt(V_y*V_y+2*g*h))/g;
             while ((!file.eof()) && (check <= V_x*t_end)) {
-                if (in_prev >> check >> tmp) {
+                if (file >> check >> tmp) {
                     X.push_back(check);
                     Y.push_back(tmp);   
                     a++;
