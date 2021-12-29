@@ -51,21 +51,21 @@ int main(int argc, char** argv) {
         double h, V_x = 0, V_y, x, y;
         int a = 0;
         vector<double> X, Y;
-        double g = 9.81, check;
+        double g = 9.81, check,tmp;
         if (file.is_open()) {
             file >> h;
             file >> V_x;
             file >> V_y;
             X.push_back(0);
-            Y.push_back(h);
-            
+            Y.push_back(h);         
             double t_end = (V_y+sqrt(V_y*V_y+2*g*h))/g;
             while ((!file.eof()) && (check <= V_x*t_end)) {
-                    file >> x >> y;
-                    X.push_back(x);
-                    Y.push_back(y);
-                    a++;            
+                if (in_prev >> check >> tmp) {
+                    X.push_back(check);
+                    Y.push_back(tmp);   
+                    a++;
                 }
+            }
         }
        
        if (a==0) {
