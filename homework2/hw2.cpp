@@ -51,7 +51,7 @@ int main(int argc, char** argv) {
         double h, V_x = 0, V_y, x, y;
         int a = 0;
         vector<double> X, Y;
-        double g = 9.81;
+        double g = 9.81, x,y;
         if (file.is_open()) {
             file >> h;
             file >> V_x;
@@ -60,8 +60,9 @@ int main(int argc, char** argv) {
             Y.push_back(h);
 
             while (!file.eof()) {
-                X.push_back(check);
-                Y.push_back(tmp);
+                file >> x >> y;
+                X.push_back(x);
+                Y.push_back(y);
                 a++;            
             }
         }
