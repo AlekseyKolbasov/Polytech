@@ -59,8 +59,8 @@ int main(int argc, char** argv) {
             X.push_back(0);
             Y.push_back(h);
             
-            double t_end = (v_y+sqrt(v_y*v_y+2*g*y_0))/g;
-            while ((!in.eof()) && (check <= v_x*t_end)) {
+            double t_end = (V_y+sqrt(V_y*V_y+2*g*h))/g;
+            while ((!file.eof()) && (check <= V_x*t_end)) {
                     file >> x >> y;
                     X.push_back(x);
                     Y.push_back(y);
